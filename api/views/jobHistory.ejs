@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job History INFO</title>
+    <%- include("shared/links"); %>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <!-- Header -->
+    <%- include("shared/header", {loggedin : isAuth}); %>
+
+    <!-- Job history -->
+     
+    <!-- form ko .multipleJob isiliye nhi diya kyuki wo phir btn div k niche (last me) append hoga isiliye ab div me append krrhe  -->
+    <% if(arr.length === 0) { %>
+        <div class="container mt-5 d-flex justify-content-center ">
+            <div class="col-md-8 col-lg-6 form-container">
+                <h3 class="text-center mb-4">Fill Up Work Experience</h3>
+                <form>
+                    <div class="multipleJob">
+                        <div class="moreworkExp">
+                            <div class="mb-3">
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <input type="text" class="form-control companyName" placeholder="Enter company name">
+                                <small class="text-danger companyError"></small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Discription" class="form-label">Discription</label>
+                                <textarea type="text" class="form-control Discription" placeholder="Enter Discription"></textarea>
+                                <small class="text-danger discriptionError"></small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Start year</label>
+                                <input type="datetime-local" class="form-control startJob" placeholder="start year"/>
+                                <small class="text-danger startError"></small>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">End year</label>
+                                <input type="datetime-local" class="form-control endJob" placeholder="End year"/>
+                                <small class="text-danger endError"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-around align-items-center mb-3">
+                            <button type="button" class="btn btn-primary" id="jobDetails">Save Job history</button>
+                            <button type="button" class="btn btn-secondary" onclick="gotoSkillsPage()">Next page</button>
+                        </div>
+                        <div class="d-flex justify-content-around align-items-center">
+                            <button type="button" class="btn btn-warning" onclick="gotoEducationPage()">Previous page</button>
+                        </div>
+                        <div class="d-flex justify-content-around align-items-center">
+                            <button type="button" class="btn" onclick=moreExperience()>
+                                <img src="/images/add-file.png" alt="" width="40px" height="40px">
+                            </button>
+                            <button type="button" class="btn" onclick=removeDiv()>
+                                <img src="/images/minus-sign.png" alt="" width="45px" height="45px">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <% }else{ %>
+        <div class="container mt-5 d-flex justify-content-center ">
+            <div class="col-md-8 col-lg-6 form-container">
+                <h3 class="text-center mb-4">Fill Up Work Experience</h3>
+                <form>  
+                    <div class="multipleJob mt-4">
+                        <% arr.forEach(function(item){ %>
+                            <div class="moreworkExp">
+                                <div class="mb-3">
+                                    <label for="companyName" class="form-label">Company Name</label>
+                                    <input type="text" class="form-control companyName" value="<%=item.company_name%>" placeholder="Enter company name">
+                                    <small class="text-danger companyError"></small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Discription" class="form-label">Discription</label>
+                                    <textarea type="text" class="form-control Discription" placeholder="Enter Discription"><%=item.discription%></textarea>
+                                    <small class="text-danger discriptionError"></small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Start year</label>
+                                    <input type="datetime-local" class="form-control startJob" value="<%=item.start_year%>" placeholder="start year"/>
+                                    <small class="text-danger startError"></small>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">End year</label>
+                                    <input type="datetime-local" class="form-control endJob" value="<%=item.end_year%>" placeholder="End year"/>
+                                    <small class="text-danger endError"></small>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-around align-items-center mb-3">
+                            <button type="button" class="btn btn-primary" id="jobDetails">Save Job history</button>
+                            <button type="button" class="btn btn-secondary" onclick="gotoSkillsPage()">Next page</button>
+                        </div>
+                        <div class="d-flex justify-content-around align-items-center">
+                            <button type="button" class="btn btn-warning" onclick="gotoEducationPage()">Previous page</button>
+                        </div>
+                        <div class="d-flex justify-content-around align-items-center">
+                            <button type="button" class="btn" onclick=moreExperience()>
+                                <img src="/images/add-file.png" alt="" width="40px" height="40px">
+                            </button>
+                            <button type="button" class="btn" onclick=removeDiv()>
+                                <img src="/images/minus-sign.png" alt="" width="45px" height="45px">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <% } %>
+    <!-- Date prefill nhi horha <input> me MM/DD/YYYY format h Lekin 
+mySql DATE (datatype) me YYYY/MM/DD format me h  -->
+    
+
+
+    <script src="/js/jobHistory.js"></script>
+</body>
+</html>

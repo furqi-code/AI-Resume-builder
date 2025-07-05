@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Builder</title>
+    <%- include("shared/links"); %>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <!-- Header -->
+    <%- include("shared/header", {loggedin : isAuth}) ; %>
+
+    <!-- SIGNUP MODAL -->
+    <div class="modal fade" id="signupModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="signupStaticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow-sm">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    <form onsubmit="signUp(event)">
+                        <h1 class="mb-4 fw-semibold text-center" style="font-size: 24px;">Create an Account</h1>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" name="user" placeholder="username" required />
+                            <label>Username</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" name="Email" placeholder="email" required />
+                            <label>Email</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control rounded-3" name="userPassword" placeholder="Password" required />
+                            <label>Password</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2" style="font-size: 16px;">
+                            Sign Up
+                        </button>
+                        <div class="text-success text-center mt-3" id="signupSuccessMessage"></div>
+                        <div class="text-danger text-center mt-1" id="signupErrorMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow-sm">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Sign In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    <form onsubmit="login(event)">
+                        <h1 class="mb-4 fw-semibold text-center" style="font-size: 24px;">Welcome Back</h1>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" name="email" placeholder="email" required />
+                            <label>Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" name="password" placeholder="Password" required />
+                            <label>Password</label>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center  mb-3">
+                            <div>
+                                <input class="form-check-input" type="checkbox" value="remember-me" id="rememberMe" />
+                                <label class="form-check-label" for="rememberMe"> Remember me </label>
+                            </div>
+                            <input class="btn btn-link" type="button" value="Forgot Password?" data-bs-toggle="modal" data-bs-target="#forgotPassModal" placeholder="Forgot Password" />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2" style="font-size: 16px;">
+                            Sign In
+                        </button>
+                        <div class="text-success text-center mt-3" id="signinSuccessMessage"></div>
+                        <div class="text-danger text-center mt-1" id="signinErrorMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forget Password Modal -->
+      <div class="modal fade" id="forgotPassModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="forgotPassModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow-sm">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Reset Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    <form onsubmit="forgotPass(event)">
+                        <h1 class="mb-4 fw-semibold text-center" style="font-size: 24px;">Forgot Your Password ?</h1>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" name="email" placeholder="email" required />
+                            <label>Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" name="newPassword" placeholder="New Password" required />
+                            <label>New Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" name="confirmPassword" placeholder="Confirm Password" required />
+                            <label>Re-enter Password</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2" style="font-size: 16px;">
+                            Change Password
+                        </button>
+                        <div class="text-success text-center mt-1" id="resetPassMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ResumeTitle Modal -->
+    <div class="modal fade" id="resume" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="signupStaticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow-sm">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Let's Start building your Resume</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    <form onsubmit="resume(event)">
+                        <h1 class="mb-4 fw-semibold text-center" style="font-size: 24px;">Good luck</h1>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" name="title" placeholder="Title" required />
+                            <label>Title</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2" style="font-size: 16px;">
+                            Start
+                        </button>
+                        <div class="text-success text-center mt-3" id="resumeDone">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast hide" id="resetToast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+            <img src="/images/user.png" class="rounded me-2" alt="..." width="35" height="35">
+            <strong class="me-auto">Resume Builder</strong>
+            <small class="text-body-secondary">just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Your password has been changed successfully
+            </div>
+        </div>
+    </div>
+
+
+    <% if(isAuth === false){ %>
+        <p class="text-white text-center mt-5">Please Login / SignUp </p>
+    <% } else if(arr.length === 0 && isAuth === true){ %>
+        <p class="text-white text-center mt-5">start building resume<br>Zero resume made</p>
+        <div class="container mt-5">
+            <div class="employee d-flex justify-content-center align-items-center">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#resume">Create Resume</button>
+            </div>
+        </div>
+    <% }else if(arr.length > 0 && isAuth === true) {%>
+        <div class="container mt-5">
+            <div class="employee d-flex justify-content-center align-items-center">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#resume">Create Resume</button>
+            </div>
+        </div>
+        <div class="container">
+            <% arr.forEach(function(item){ %>
+                <div class="row mt-5">
+                    <div class="col-lg-4">
+                        <h4 class="text-white text-center"><%= item.title %></h4>
+                    </div>
+                    <div class="col-lg-2">
+                        <a href="http://localhost:10000/personalDetails?resumeID=<%= item.resume_id %>">
+                            <button type="button" class="btn btn-secondary">Next / Edit</button>
+                        </a>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-danger" onclick="deleteResume(<%= item.resume_id %>)">Delete</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <a href="http://localhost:10000/download">
+                            <button type="button" class="btn btn-link">Download</button>
+                        </a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+    
+    
+
+    <script src="/js/home.js"></script>
+</body>
+
+</html>

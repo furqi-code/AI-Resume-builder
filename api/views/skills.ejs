@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills INFO</title>
+    <%- include("shared/links"); %>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <!-- Header -->
+    <%- include("shared/header", {loggedin : isAuth}); %>
+
+    <!-- Skills -->
+    <% if(arr.length === 0) { %>
+        <div class="container mt-5 d-flex justify-content-center " id="SkillsDiv">
+            <div class="col-md-8 col-lg-6 form-container">
+                <h3 class="text-center mb-4">Fill Up Skills</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="skillName" class="form-label">Skill-0</label>
+                        <input type="text" class="form-control" id="skillName" placeholder="Enter Skill">
+                        <small id="skill0Error" class="text-danger"></small>
+                    </div>
+                    <div class="mb-4">
+                        <label for="customRange" class="form-label">select ratings</label>
+                        <input type="range" class="form-range" min="0" max="5" id="customRange">
+                        <small id="range0Error" class="text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="skillName1" class="form-label">Skill-1</label>
+                        <input type="text" class="form-control" id="skillName1" placeholder="Enter Skill">
+                        <small id="skill1Error" class="text-danger"></small>
+                    </div>
+                    <div class="mb-4">
+                        <label for="customRange1" class="form-label">select ratings</label>
+                        <input type="range" class="form-range" min="0" max="5" id="customRange1">
+                        <small id="range1Error" class="text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="skillName2" class="form-label">Skill-2</label>
+                        <input type="text" class="form-control" id="skillName2" placeholder="Enter Skill">
+                        <small id="skill2Error" class="text-danger"></small>
+                    </div>
+                    <div class="mb-4">
+                        <label for="customRange2" class="form-label">select ratings</label>
+                        <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                        <small id="range2Error" class="text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="skillName3" class="form-label">Skill-3</label>
+                        <input type="text" class="form-control" id="skillName3" placeholder="Enter Skill">
+                        <small id="skill3Error" class="text-danger"></small>
+                    </div>
+                    <div class="mb-4">
+                        <label for="customRange3" class="form-label">select ratings</label>
+                        <input type="range" class="form-range" min="0" max="5" id="customRange3">
+                        <small id="range3Error" class="text-danger"></small>
+                    </div>
+                    <div class="d-flex justify-content-around align-items-center">
+                        <button type="button" class="btn btn-primary" id="skillsDetails">Save Skills</button>
+                        <button type="button" class="btn btn-secondary" onclick="gotoHomePage()">Home page</button>
+                        <button type="button" class="btn btn-warning" onclick="gotoWorkExpPage()">Previous page</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <% }else{ %>
+        <% arr.forEach(function(item){ %>
+            <div class="container mt-5 d-flex justify-content-center " id="SkillsDiv">
+                <div class="col-md-8 col-lg-6 form-container">
+                    <h3 class="text-center mb-4">Fill Up Skills</h3>
+                    <form>
+                        <div class="mb-3">
+                            <label for="skillName" class="form-label">Skill-0</label>
+                            <input type="text" class="form-control" id="skillName" value="<%=item.skill_name%>" placeholder="Enter Skill">
+                            <small id="skill0Error" class="text-danger"></small>
+                        </div>
+                        <div class="mb-4">
+                            <label for="customRange" class="form-label">select ratings</label>
+                            <input type="range" class="form-range" min="0" max="5" value="<%=item.ratings%>" id="customRange">
+                            <small id="range0Error" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="skillName1" class="form-label">Skill-1</label>
+                            <input type="text" class="form-control" id="skillName1" value="<%=item.skill_name1%>" placeholder="Enter Skill">
+                            <small id="skill1Error" class="text-danger"></small>
+                        </div>
+                        <div class="mb-4">
+                            <label for="customRange1" class="form-label">select ratings</label>
+                            <input type="range" class="form-range" min="0" max="5" value="<%=item.ratings1%>" id="customRange1">
+                            <small id="range1Error" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="skillName2" class="form-label">Skill-2</label>
+                            <input type="text" class="form-control" id="skillName2" value="<%=item.skill_name2%>" placeholder="Enter Skill">
+                            <small id="skill2Error" class="text-danger"></small>
+                        </div>
+                        <div class="mb-4">
+                            <label for="customRange2" class="form-label">select ratings</label>
+                            <input type="range" class="form-range" min="0" max="5" value="<%=item.ratings2%>" id="customRange2">
+                            <small id="range2Error" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="skillName3" class="form-label">Skill-3</label>
+                            <input type="text" class="form-control" id="skillName3" value="<%=item.skill_name3%>" placeholder="Enter Skill">
+                            <small id="skill3Error" class="text-danger"></small>
+                        </div>
+                        <div class="mb-4">
+                            <label for="customRange3" class="form-label">select ratings</label>
+                            <input type="range" class="form-range" min="0" max="5" value="<%=item.ratings3%>" id="customRange3">
+                            <small id="range3Error" class="text-danger"></small>
+                        </div>
+                        <div class="d-flex justify-content-around align-items-center">
+                            <button type="button" class="btn btn-primary" id="skillsDetails">Save Skills</button>
+                            <button type="button" class="btn btn-secondary" onclick="gotoHomePage()">Home page</button>
+                            <button type="button" class="btn btn-warning" onclick="gotoWorkExpPage()">Previous page</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
+
+
+    <script src="/js/skill.js"></script>
+</body>
+</html>

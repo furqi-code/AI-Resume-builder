@@ -1,0 +1,36 @@
+body {  
+    /* background: #121212; */
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+.navbar {
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+.navbar-brand {
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+.form-container {
+    background: black;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(228, 237, 247, 0.2);
+}
+.form-label {
+    font-weight: 500;
+    color: lightpink;
+}
+.form-control {
+    border-radius: 10px;
+}
+.btn{
+    border-radius: 12px;
+    padding: 10px 23px;
+    font-weight: 600;
+}
+#logoutButton {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}

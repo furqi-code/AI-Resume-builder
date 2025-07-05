@@ -1,0 +1,27 @@
+body{
+    background: #000;
+}
+.navbar {
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+.navbar-brand {
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+.btn-custom, .employee{
+    border-radius: 15px;
+    padding: 8px 20px;
+    font-weight: 500;
+    /* transition: all 0.3s ease; */
+}
+.btn{
+    border-radius: 12px;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+#logoutButton {
+    background-color: #dc3545; 
+    color: white;
+    border: none;
+}

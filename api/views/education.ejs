@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education INFO</title>
+    <%- include("shared/links"); %>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <!-- Header -->
+    <%- include("shared/header", {loggedin : isAuth}); %>
+
+    <!-- Education -->
+    <% if(arr.length === 0) { %>
+        <div class="container mt-5 d-flex justify-content-center " id="educationDiv">
+            <div class="col-md-8 col-lg-6 form-container">
+                <h3 class="text-center mb-4">Fill Up Education</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="DegreeName" class="form-label">Degree Name</label>
+                        <input type="text" class="form-control" id="degreeName" placeholder="Enter Degree name">
+                        <small id="degreeError" class="text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="percentage" class="form-label">Percentage</label>
+                        <input type="text" class="form-control" id="percentage" placeholder="Enter Percentage">
+                        <small id="percentageError" class="text-danger"></small>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="datetime-local" class="form-control" id="start" placeholder="start year"/>
+                        <label>Start year</label>
+                        <small id="startError" class="text-danger"></small>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="datetime-local" class="form-control" id="end" placeholder="End year"/>
+                        <label>End year</label>
+                        <small id="endError" class="text-danger"></small>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" id="educationDetails">Save Details</button>
+                        </div>
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-warning" onclick="gotoPersonalPage()">Previous page</button>
+                        </div>    
+                    </div>
+                </form>
+            </div>
+        </div>
+    <% }else{ %>
+        <% arr.forEach(function(item){ %>
+            <div class="container mt-5 d-flex justify-content-center " id="educationDiv">
+                <div class="col-md-8 col-lg-6 form-container">
+                    <h3 class="text-center mb-4">Fill Up Education</h3>
+                    <form>
+                        <div class="mb-3">
+                            <label for="DegreeName" class="form-label">Degree Name</label>
+                            <input type="text" class="form-control" id="degreeName" value="<%=item.degree_name%>" placeholder="Enter Degree name">
+                            <small id="degreeError" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="percentage" class="form-label">Percentage</label>
+                            <input type="text" class="form-control" id="percentage" value="<%=item.percentage%>" placeholder="Enter Percentage">
+                            <small id="percentageError" class="text-danger"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="datetime-local" class="form-control" id="start" value="<%=item.start_year%>" placeholder="start year"/>
+                            <label>Start year</label>
+                            <small id="startError" class="text-danger"></small>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="datetime-local" class="form-control" id="end" value="<%=item.end_year%>" placeholder="End year"/>
+                            <label>End year</label>
+                            <small id="endError" class="text-danger"></small>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary" id="educationDetails">Save Details</button>
+                            </div>
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-warning" onclick="gotoPersonalPage()">Previous page</button>
+                            </div>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
+<!-- Date prefill nhi horha <input> me MM/DD/YYYY format h Lekin 
+mySql DATE (datatype) me YYYY/MM/DD format me h  -->
+
+    <script src="/js/education.js"></script>
+</body>
+</html>
