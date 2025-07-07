@@ -15,7 +15,7 @@ Router.get("/", async function(req,res){
         res.render("jobHistory", {isAuth, arr : []}) ;
 })
 
-Router.post("/", async function(req,res){
+Router.post("/", validator(workExpSchema), async function(req,res){
     try{    
         const current_user = req.user_id ;
         const resume_id = req.query.resumeID ;

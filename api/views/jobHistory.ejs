@@ -83,12 +83,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Start year</label>
-                                    <input type="datetime-local" class="form-control startJob" value="<%=item.start_year%>" placeholder="start year"/>
+                                    <input type="datetime-local" class="form-control startJob" value="<%= item.start_year.toISOString().slice(0, 16) %>" placeholder="start year"/>
                                     <small class="text-danger startError"></small>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">End year</label>
-                                    <input type="datetime-local" class="form-control endJob" value="<%=item.end_year%>" placeholder="End year"/>
+                                    <input type="datetime-local" class="form-control endJob" value="<%= item.end_year.toISOString().slice(0, 16) %>" placeholder="End year"/>
                                     <small class="text-danger endError"></small>
                                 </div>
                             </div>
@@ -115,9 +115,7 @@
             </div>
         </div>
     <% } %>
-    <!-- Date prefill nhi horha <input> me MM/DD/YYYY format h Lekin 
-mySql DATE (datatype) me YYYY/MM/DD format me h  -->
-    
+    <!-- isostring me hi ata h date no matter the datatype in mySql -->
 
 
     <script src="/js/jobHistory.js"></script>
