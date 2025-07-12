@@ -45,7 +45,7 @@ create table job_history (
     company_name VARCHAR(100),
     start_year timestamp,
     end_year timestamp,
-    discription VARCHAR(255),
+    discription TEXT(65534),
     created_by int,
     FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (resume_id) REFERENCES resumeTitle(resume_id) ON DELETE CASCADE
@@ -53,14 +53,10 @@ create table job_history (
 
 create table skills (
     resume_id int,
-    skill_name VARCHAR(100),
-    ratings int,
     skill_name1 VARCHAR(100),
     ratings1 int,
     skill_name2 VARCHAR(100),
     ratings2 int,
-    skill_name3 VARCHAR(100),
-    ratings3 int,
 	created_by int,
     FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (resume_id) REFERENCES resumeTitle(resume_id) ON DELETE CASCADE

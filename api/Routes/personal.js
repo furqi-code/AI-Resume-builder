@@ -15,7 +15,7 @@ Router.get("/", async function(req,res){
         res.render("personalDetails", {isAuth, arr : []}) ;
 })
 
-Router.post("/", validator(personalSchema), async function(req,res){
+Router.post("/",  async function(req,res){
     try{    
         const {username, gmail, linkedin, github, gender, phoneNumber} = req.body ;
         const current_user = req.user_id ;

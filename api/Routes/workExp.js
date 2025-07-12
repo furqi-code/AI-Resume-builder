@@ -15,7 +15,7 @@ Router.get("/", async function(req,res){
         res.render("jobHistory", {isAuth, arr : []}) ;
 })
 
-Router.post("/", validator(workExpSchema), async function(req,res){
+Router.post("/", async function(req,res){
     try{    
         const current_user = req.user_id ;
         const resume_id = req.query.resumeID ;
@@ -27,7 +27,7 @@ Router.post("/", validator(workExpSchema), async function(req,res){
         {
             req.body.workExp_array.forEach(async function(element){
                 await executeQuery(`insert into job_history(created_by, resume_id, company_name, start_year, end_year, discription)
-                values(?,?,?,?,?,?)`, [current_user, resume_id, element.company, element.start_year, element.end_year, element.discription]) ;    
+                values(?,?,?,?,?,?)`, [current_user, resume_id, element.company, element.startDate, element.endDate, element.discription]) ;    
             });
             res.status(200).send("Job history inserted") ;
         }else{
@@ -37,7 +37,7 @@ Router.post("/", validator(workExpSchema), async function(req,res){
             await executeQuery(`delete from job_history where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
             req.body.workExp_array.forEach(async function(element){
                 await executeQuery(`insert into job_history(created_by, resume_id, company_name, start_year, end_year, discription)
-                values(?,?,?,?,?,?)`, [current_user, resume_id, element.company, element.start_year, element.end_year, element.discription]) ;    
+                values(?,?,?,?,?,?)`, [current_user, resume_id, element.company, element.startDate, element.endDate, element.discription]) ;    
             });
             res.status(200).send("Job history Updated") ;
         }

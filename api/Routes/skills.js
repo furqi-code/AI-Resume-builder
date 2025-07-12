@@ -20,10 +20,24 @@ Router.post("/", async function(req,res){
     try{    
         const current_user = req.user_id ;
         const resume_id = req.query.resumeID ;
-        const {skill, skill1, skill2, skill3, range, range1, range2, range3} = req.body ;
-        let inserted_skills = await executeQuery(`insert into skills(created_by, resume_id, skill_name, ratings, skill_name1, ratings1, skill_name2, ratings2, skill_name3, ratings3)
-            values(?,?,?,?,?,?,?,?,?,?)`,[current_user, resume_id, skill, range, skill1, range1, skill2, range2,  skill3, range3]) ;
-        res.status(200).send("Skills inserted") ;
+        // const {skill, skill1, skill2, skill3, range, range1, range2, range3} = req.body ;
+        console.log("skills array - ", req.body.skills_array)  ;
+        let existing_skills= await executeQuery(`select * from skills where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
+        console.log(existing_skills) ;
+        if(existing_skills.length === 0){
+            req.body.skills_array.forEach(async function(element){
+                await executeQuery(`insert into skills(created_by, resume_id, skill_name1, ratings1, skill_name2, ratings2)
+                values(?,?,?,?,?,?)`,[current_user, resume_id, element.skill, element.range, element.skill1, element.range1]) ;
+            })
+            res.status(200).send("Skills inserted") ;
+        }else{
+            await executeQuery(`delete from skills where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
+            req.body.skills_array.forEach(async function(element){
+                await executeQuery(`insert into skills(created_by, resume_id, skill_name1, ratings1, skill_name2, ratings2)
+                values(?,?,?,?,?,?)`,[current_user, resume_id, element.skill, element.range, element.skill1, element.range1]) ;
+            })
+            res.status(200).send("Skills inserted") ;
+        }
     }catch(err){
         console.log(err) ;  
         res.status(401).send({

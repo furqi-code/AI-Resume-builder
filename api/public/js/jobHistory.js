@@ -47,11 +47,11 @@ $("#jobDetails").on("click", function(){
             hasError = true ;
             return ;
         }
-        else if(!discripRegex.test(discription)){
-            $(this).find(".discriptionError").text("Description must have Alphabets") ;
-            hasError = true ;
-            return ;
-        }
+        // else if(!discripRegex.test(discription)){
+        //     $(this).find(".discriptionError").text("Discription must have Alphabets") ;
+        //     hasError = true ;
+        //     return ;
+        // }
         let jobs = {    
             company,
             startDate,
@@ -73,7 +73,6 @@ $("#jobDetails").on("click", function(){
     })
     .then(function(res){
         alert("Job History added in DB") ;
-        // window.open("/") ;
     })
     .catch(function(err){
         console.log(err) ;
