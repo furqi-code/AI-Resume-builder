@@ -16,6 +16,7 @@ const { personalRouter } = require("./Routes/personal");
 const { educationRouter } = require("./Routes/education");
 const { workExpRouter } = require("./Routes/workExp");
 const { skillRouter } = require("./Routes/skills");
+const { summaryRouter } = require("./Routes/summary");
 const { deleteRouter } = require("./Routes/deleteResume");
 const resetPassword = require("./Routes/resetPassword") ;
 
@@ -44,6 +45,7 @@ app.use("/personalDetails", personalRouter);
 app.use("/educationDetails", educationRouter);
 app.use("/jobHistory", workExpRouter);
 app.use("/skills", skillRouter);
+app.use("/summary", summaryRouter) ;
 app.use("/deleteResume", deleteRouter);
 
 app.listen(PORT, function () {

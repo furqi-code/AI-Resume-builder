@@ -8,9 +8,10 @@ const githubRegex = /^https:\/\/(www\.)?github\.com\/[a-zA-Z0-9_-]+\/?$/ ;
 
 $("#personalDetails").on("click", function(){
     // Clear all error messages
-    $("#nameError, #phoneError, #linkedinError, #githubError, #genderError").text("") ;
+    $("#nameError, #phoneError,#emailError, #addressError, #linkedinError, #githubError, #genderError").text("") ;
     let name = $("#fullName").val() ;
     let email = $("#email").val() ;
+    let address = $("#address").val() ;
     let linkedin = $("#linkedin").val() ;
     let github = $("#github").val() ;
     let phoneNumber = $("#phoneNumber").val() ;
@@ -50,6 +51,7 @@ $("#personalDetails").on("click", function(){
         data : {
             username : name,
             gmail : email,
+            location : address,
             linkedin : linkedin,
             github : github,
             phoneNumber,
@@ -58,7 +60,7 @@ $("#personalDetails").on("click", function(){
     })
     .then(function(res){
         alert("personalDetails added in DB") ;
-        window.open(`/educationDetails?resumeID=${resumeID}`) ;
+        window.open(`/educationDetails?resumeID=${resumeID}`, "_parent") ;
     })
     .catch(function(err){
         console.log(err) ;

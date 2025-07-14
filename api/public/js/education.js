@@ -36,17 +36,17 @@ $("#educationDetails").on("click", function(){
         // seconds user de hi nhi skta isliye wo 00 print hoga DB me and
         // milliseconds k liye timestamp(3) use krna hoga for upto 3 digits agar diya h to
         // return exits from .each() not the outer function so invalid pe bhi Post req lg rhi h, so now we are using a flag
-        if(!degreeRegex.test(degree)){  
-            $(this).find(".degreeError").text("Please enter a valid Degree Name") ;
-            hasError = true ;
-            return ;
-        }
-        else if(!percentageRegex.test(percentage)){
+        // if(!degreeRegex.test(degree)){  
+        //     $(this).find(".degreeError").text("Please enter a valid Degree Name") ;
+        //     hasError = true ;
+        //     return ;
+        // }
+        if(!percentageRegex.test(percentage)){
             $(this).find(".percentageError").text("Please enter a valid Percentage with %") ;
             hasError = true ;
             return ;
         }   
-        if(startDate > endDate){
+        else if(startDate > endDate){
             $(this).find(".endError").text("End_year should be greater than start_year") ;
             hasError = true ;
             return ;
@@ -87,22 +87,22 @@ function moreEducation()
                     <div class="mb-3">
                         <label for="DegreeName" class="form-label">Degree Name</label>
                         <input type="text" class="form-control degreeName" placeholder="Enter Degree name">
-                        <small id="degreeError" class="text-danger"></small>
+                        <small class="text-danger degreeError"></small>
                     </div>
                     <div class="mb-3">
                         <label for="percentage" class="form-label">Percentage</label>
                         <input type="text" class="form-control percentage" placeholder="Enter Percentage">
-                        <small id="percentageError" class="text-danger"></small>
+                        <small class="text-danger percentageError"></small>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="datetime-local" class="form-control start" placeholder="start year"/>
                         <label>Start year</label>
-                        <small id="startError" class="text-danger"></small>
+                        <small class="text-danger startError"></small>
                     </div>
                     <div class="form-floating mb-4">
                         <input type="datetime-local" class="form-control end" placeholder="End year"/>
                         <label>End year</label>
-                        <small id="endError" class="text-danger"></small>
+                        <small class="text-danger endError"></small>
                     </div>
                 </div>`
     $(".multipleEducation").append(html) ;

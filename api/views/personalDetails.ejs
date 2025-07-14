@@ -28,6 +28,11 @@
                         <small id="emailError" class="text-danger"></small>
                     </div>
                     <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="address" class="form-control" id="address" placeholder="address">
+                        <small id="addressError" class="text-danger"></small>
+                    </div>
+                    <div class="mb-3">
                         <label for="linkedin" class="form-label">LinkedIn Profile</label>
                         <input type="text" class="form-control" id="linkedin" placeholder="Enter LinkedIn profile link">
                         <small id="linkedinError" class="text-danger"></small>
@@ -82,6 +87,11 @@
                             <label for="email" class="form-label">Email Address</label>
                             <input type="email" class="form-control" id="email" value="<%=item.email%>" placeholder="your@email.com">
                             <small id="emailError" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="address" class="form-control" id="address" value="<%= item.address %>" placeholder="address">
+                            <small id="addressError" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <label for="linkedin" class="form-label">LinkedIn Profile</label>

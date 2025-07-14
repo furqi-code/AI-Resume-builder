@@ -27,17 +27,16 @@ Router.post("/", async function(req,res){
         if(existing_skills.length === 0){
             req.body.skills_array.forEach(async function(element){
                 await executeQuery(`insert into skills(created_by, resume_id, skill_name1, ratings1, skill_name2, ratings2)
-                values(?,?,?,?,?,?)`,[current_user, resume_id, element.skill, element.range, element.skill1, element.range1]) ;
+                values(?,?,?,?,?,?)`,[current_user, resume_id, element.skill1, element.range1, element.skill2, element.range2]) ;
             })
-            res.status(200).send("Skills inserted") ;
         }else{
             await executeQuery(`delete from skills where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
             req.body.skills_array.forEach(async function(element){
                 await executeQuery(`insert into skills(created_by, resume_id, skill_name1, ratings1, skill_name2, ratings2)
-                values(?,?,?,?,?,?)`,[current_user, resume_id, element.skill, element.range, element.skill1, element.range1]) ;
+                values(?,?,?,?,?,?)`,[current_user, resume_id, element.skill1, element.range1, element.skill2, element.range2]) ;
             })
-            res.status(200).send("Skills inserted") ;
         }
+        res.status(200).send("Skills inserted") ;
     }catch(err){
         console.log(err) ;  
         res.status(401).send({

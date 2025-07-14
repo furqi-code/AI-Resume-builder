@@ -10,7 +10,7 @@
 <body>
     <!-- Header -->
     <%- include("shared/header", {loggedin : isAuth}); %>
-
+    <% let skillCount=1 %>
     <!-- Skills -->
     <% if(arr.length === 0) { %>
         <div class="container mt-5 d-flex justify-content-center " id="SkillsDiv">
@@ -20,23 +20,23 @@
                     <div class="multipleSkills"> 
                         <div class="moreSkills"> 
                             <div class="mb-3">
-                                <label for="skillName" class="form-label">Skill-0</label>
-                                <input type="text" class="form-control skillName" placeholder="Enter Skill">
-                                <small class="text-danger skill0Error"></small>
-                            </div>
-                            <div class="mb-4">
-                                <label for="customRange" class="form-label">select ratings</label>
-                                <input type="range" class="form-range customRange" min="0" max="5">
-                                <small class="text-danger range0Error"></small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="skillName1" class="form-label">Skill-1</label>
+                                <label for="skillName1" class="form-label">Skill-<%= skillCount++ %></label>
                                 <input type="text" class="form-control skillName1" placeholder="Enter Skill">
-                                <small class="text-danger skill1Error"></small>
+                                <small class="text-danger skill0Error"></small>
                             </div>
                             <div class="mb-4">
                                 <label for="customRange1" class="form-label">select ratings</label>
                                 <input type="range" class="form-range customRange1" min="0" max="5">
+                                <small class="text-danger range0Error"></small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="skillName2" class="form-label">Skill-<%= skillCount++ %></label>
+                                <input type="text" class="form-control skillName2" placeholder="Enter Skill">
+                                <small class="text-danger skill1Error"></small>
+                            </div>
+                            <div class="mb-4">
+                                <label for="customRange2" class="form-label">select ratings</label>
+                                <input type="range" class="form-range customRange2" min="0" max="5">
                                 <small class="text-danger range1Error"></small>
                             </div>
                         </div>
@@ -70,23 +70,23 @@
                             <% arr.forEach(function(item){ %>
                                 <div class="moreSkills"> 
                                     <div class="mb-3">
-                                        <label for="skillName" class="form-label">Skill-0</label>
-                                        <input type="text" class="form-control skillName" value="<%=item.skill_name1%>" placeholder="Enter Skill">
+                                        <label for="skillName1" class="form-label">Skill-<%= skillCount++ %></label>
+                                        <input type="text" class="form-control skillName1" value="<%=item.skill_name1%>" placeholder="Enter Skill">
                                         <small class="text-danger skill0Error"></small>
                                     </div>
                                     <div class="mb-4">
-                                        <label for="customRange" class="form-label">select ratings</label>
-                                        <input type="range" class="form-range customRange" min="0" max="5" value="<%=item.ratings1%>">
+                                        <label for="customRange1" class="form-label">select ratings</label>
+                                        <input type="range" class="form-range customRange1" min="0" max="5" value="<%=item.ratings1%>">
                                         <small class="text-danger range0Error"></small>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="skillName1" class="form-label">Skill-1</label>
-                                        <input type="text" class="form-control skillName1" value="<%=item.skill_name2%>" placeholder="Enter Skill">
+                                        <label for="skillName2" class="form-label">Skill-<%= skillCount++ %></label>
+                                        <input type="text" class="form-control skillName2" value="<%=item.skill_name2%>" placeholder="Enter Skill">
                                         <small class="text-danger skill1Error"></small>
                                     </div>
                                     <div class="mb-4">
-                                        <label for="customRange1" class="form-label">select ratings</label>
-                                        <input type="range" class="form-range customRange1" min="0" max="5" value="<%=item.ratings2%>">
+                                        <label for="customRange2" class="form-label">select ratings</label>
+                                        <input type="range" class="form-range customRange2" min="0" max="5" value="<%=item.ratings2%>">
                                         <small class="text-danger range1Error"></small>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
             </div>
     <% } %>
 <!-- skill k id ya class me, frontend, backend indexing 0 se start thi multiple rows implement krne se pehle -->
-<!-- lekin ab frontend, backend js me 1 se so dont get confuse in future  -->
+<!-- lekin ab 1 se so dont get confuse in future  -->
 
     <script src="/js/skill.js"></script>
 </body>

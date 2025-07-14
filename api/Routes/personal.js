@@ -17,24 +17,23 @@ Router.get("/", async function(req,res){
 
 Router.post("/",  async function(req,res){
     try{    
-        const {username, gmail, linkedin, github, gender, phoneNumber} = req.body ;
+        const {username, gmail, location, linkedin, github, gender, phoneNumber} = req.body ;
         const current_user = req.user_id ;
         const resume_id = req.query.resumeID ;
         let existing_personalDetails = await executeQuery(`select * from personal_details where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
         if(existing_personalDetails.length === 0)
         {
-            let inserted_personalDetails = await executeQuery(`insert into personal_details(created_by, resume_id, name, email, linkedin, github, contact, gender)
-                values(?,?,?,?,?,?,?,?)`,[current_user, resume_id, username, gmail, linkedin, github, phoneNumber, gender]) ;
-            res.status(200).send("personal Details inserted") ;
+            let inserted_personalDetails = await executeQuery(`insert into personal_details(created_by, resume_id, name, email, address, linkedin, github, contact, gender)
+                values(?,?,?,?,?,?,?,?,?)`,[current_user, resume_id, username, gmail, location, linkedin, github, phoneNumber, gender]) ;
         }else{
             // throw{
             //     message : "Personal Details of this Resume already exist"
             // }
             await executeQuery(`delete from personal_details where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
-            await executeQuery(`insert into personal_details(created_by, resume_id, name, email, linkedin, github, contact, gender)
-                values(?,?,?,?,?,?,?,?)`,[current_user, resume_id, username, gmail, linkedin, github, phoneNumber, gender]) ;
-            res.status(200).send("personal Details Updated") ;
+            let inserted_personalDetails = await executeQuery(`insert into personal_details(created_by, resume_id, name, email, address, linkedin, github, contact, gender)
+                values(?,?,?,?,?,?,?,?,?)`,[current_user, resume_id, username, gmail, location, linkedin, github, phoneNumber, gender]) ;
         }
+        res.status(200).send("personal Details inserted") ;
     }catch(err){
         console.log(err) ;  
         res.status(401).send({

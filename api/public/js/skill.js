@@ -10,10 +10,10 @@ const rangeRegex = /^[0-5]$/ ;  // input type = range h, validate nhi kre to bhi
 $("#skillsDetails").on("click", function(){
     let skills_array = [], hasError = false ;
     $(".moreSkills").each(function(){
-        let skill1 = $(this).find(`.skillName`).val() ;
-        let skill2 = $(this).find(`.skillName1`).val() ;
-        let range1 = parseInt($(this).find(".customRange").val());
-        let range2 = parseInt($(this).find(".customRange1").val());
+        let skill1 = $(this).find(`.skillName1`).val() ;
+        let skill2 = $(this).find(`.skillName2`).val() ;
+        let range1 = parseInt($(this).find(".customRange1").val());
+        let range2 = parseInt($(this).find(".customRange2").val());
 
         $(this).find(".skill0Error, .skill1Error").text("") ;
         // if(!skillRegex.test(skill)){
@@ -51,7 +51,6 @@ $("#skillsDetails").on("click", function(){
     })
     .then(function(res){
         alert("Skills added in DB") ;
-        // window.open("/summary", "_parent") ;
     })
     .catch(function(err){
         console.log(err) ;
@@ -60,40 +59,46 @@ $("#skillsDetails").on("click", function(){
 })
 
 // adding divs in skills to save all at once, no need to use Dynamic Id
-function moreSkills()
-{
-    let html = '' ;
-    html += ` <div class="moreSkills"> 
-                <div class="mb-3">
-                    <label for="skillName" class="form-label">Skill-0</label>
-                    <input type="text" class="form-control skillName" placeholder="Enter Skill">
-                    <small class="text-danger skill0Error"></small>
-                </div>
-                <div class="mb-4">
-                    <label for="customRange" class="form-label">select ratings</label>
-                    <input type="range" class="form-range customRange" min="0" max="5">
-                    <small class="text-danger range0Error"></small>
-                </div>
-                <div class="mb-3">
-                    <label for="skillName1" class="form-label">Skill-1</label>
-                    <input type="text" class="form-control skillName1" placeholder="Enter Skill">
-                    <small class="text-danger skill1Error"></small>
-                </div>
-                <div class="mb-4">
-                    <label for="customRange1" class="form-label">select ratings</label>
-                    <input type="range" class="form-range customRange1" min="0" max="5">
-                    <small class="text-danger range1Error"></small>
-                </div>
-            </div>`
-    $(".multipleSkills").append(html) ;
+let skillLabelCount = $(".moreSkills").length * 2 + 1;
+console.log(skillLabelCount) ;
+
+function moreSkills() {
+    let label1 = skillLabelCount++;
+    let label2 = skillLabelCount++;
+
+    let html = `
+    <div class="moreSkills"> 
+        <div class="mb-3">
+            <label class="form-label">Skill-${label1}</label>
+            <input type="text" class="form-control skillName1" placeholder="Enter Skill">
+            <small class="text-danger skill0Error"></small>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Select Rating</label>
+            <input type="range" class="form-range customRange1" min="0" max="5">
+            <small class="text-danger range0Error"></small>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Skill-${label2}</label>
+            <input type="text" class="form-control skillName2" placeholder="Enter Skill">
+            <small class="text-danger skill1Error"></small>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Select Rating</label>
+            <input type="range" class="form-range customRange2" min="0" max="5">
+            <small class="text-danger range1Error"></small>
+        </div>
+    </div>`;
+
+    $(".multipleSkills").append(html);
 }
 
 function removeDiv(){
     $(".moreSkills").last().remove() ;
 }
 
-function gotoNxtPage(){
-    window.open(`/summary`, "_parent") ;
+function gotoNXTPage(){
+    window.open(`/summary?resumeID=${resumeID}`) ;
 }
 
 function gotoWorkExpPage(){

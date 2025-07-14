@@ -17,15 +17,15 @@ function signUp(event)
     const password = event.target.userPassword.value ;
     const email = event.target.Email.value ;
 
-    if(!userRegex.test(username)){
-        $("#signupErrorMessage").html("Username must start with a letter and length should be 4-17 characters") ;
-        return ;
-    }
+    // if(!userRegex.test(username)){
+    //     $("#signupErrorMessage").html("Username must start with a letter and length should be 4-17 characters") ;
+    //     return ;
+    // }
     // else if(!emailRegex.test(email)){
     //     $("#signupErrorMessage").html("Invalid email format") ;
     //     return ;
     // }
-    else if(!passRegex.test(password)){
+    if(!passRegex.test(password)){
         $("#signupErrorMessage").html("Password must contain 3-12 characters with letters and digits") ;
         return ;
     }
@@ -100,10 +100,10 @@ function resume(event)
     $("#resumeDone").html("") ;
     let title = event.target.title.value ;
 
-    if(!resumeRegex.test(title)){
-        $("#resumeDone").html("Invalid Resume") ;
-        return ;
-    }
+    // if(!resumeRegex.test(title)){
+    //     $("#resumeDone").html("Invalid Resume") ;
+    //     return ;
+    // }
 
     axios({
         method : "POST",

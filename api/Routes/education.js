@@ -28,7 +28,6 @@ Router.post("/", async function(req,res){
                 await executeQuery(`insert into education(created_by, resume_id, degree_name, start_year, end_year, percentage) values(?,?,?,?,?,?)`,
                 [current_user, resume_id, element.degree, element.startDate, element.endDate, element.percentage]) ;
             })
-            res.status(200).send("education Details inserted") ;
         }else{
             // throw{
             //     message : "Education details of this Resume already exist"
@@ -38,8 +37,8 @@ Router.post("/", async function(req,res){
                 await executeQuery(`insert into education(created_by, resume_id, degree_name, start_year, end_year, percentage) values(?,?,?,?,?,?)`,
                 [current_user, resume_id, element.degree, element.startDate, element.endDate, element.percentage]) ;
             })
-            res.status(200).send("education Details inserted") ;
         }
+        res.status(200).send("education Details inserted") ;
     }catch(err){
         console.log(err) ;  
         res.status(401).send({
