@@ -20,6 +20,7 @@ create table personal_details (
     resume_id int,
     name VARCHAR(100),
     email VARCHAR(100),
+    address VARCHAR(255),
     contact VARCHAR(20),
     linkedin VARCHAR(255),
     github VARCHAR(255),
@@ -62,6 +63,13 @@ create table skills (
     FOREIGN KEY (resume_id) REFERENCES resumeTitle(resume_id) ON DELETE CASCADE
 );
 
+create table summary(
+	resume_id int,
+	overall TEXT(65534),
+    created_by int,
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (resume_id) REFERENCES resumeTitle(resume_id) ON DELETE CASCADE
+);
 
 select * from users ;
 delete from users where user_id = 5 ;
@@ -85,6 +93,9 @@ drop table job_history ;
 
 select * from skills ;
 drop table skills ;
+
+select * from summary ;
+drop table summary ;
 
 CREATE TABLE test_time (
   sample_time TIMESTAMP

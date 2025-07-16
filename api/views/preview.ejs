@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preview page</title>
+    <%- include("shared/links"); %>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+        @import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome);
+        /* entypo */
+         @media print {
+        .no-print {
+          display: none !important;
+        }
+      }
+        
+        .navbar {
+        background: linear-gradient(to right, #0062e6, #33aeff);
+        }
+        .navbar-brand {
+        font-weight: 700;
+        font-size: 28px;
+        letter-spacing: 1px;
+        }
+        .btn {
+        border-radius: 12px;
+        padding: 10px 23px;
+        font-weight: 600;
+        }
+        #logoutButton {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        }
+        #resumediv {
+        background: #111;
+        }
+
+        [class*="entypo-"]:before {
+        font-family: "entypo", sans-serif;
+        }
+        /* fontawesome */
+        [class*="fontawesome-"]:before {
+        font-family: "FontAwesome", sans-serif;
+        }
+
+        /* Utils */
+
+        .clear {
+        clear: both;
+        }
+        .purple {
+        color: #837c9a;
+        }
+
+        .block {
+        margin: 25px 30px;
+        }
+        .block h1 {
+        margin-left: -5px;
+        font-weight: 200;
+        }
+
+        .last.block {
+        margin-bottom: 110px;
+        }
+
+        .horizontal_list {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        }
+        .horizontal_list li {
+        float: left;
+        }
+        .horizontal_list li:before {
+        content: none;
+        }
+        .horizontal_list li {
+        padding-left: 0;
+        text-indent: 0;
+        }
+
+        .horizontal_line {
+        margin: 34px 0 0 30px;
+        height: 26px;
+        position: relative;
+        }
+        .line_left,
+        .line_right {
+        border-top: 1px solid #434247;
+        width: 305px;
+        margin-top: 13px;
+        }
+        .line_left {
+        float: left;
+        }
+        .line_right {
+        float: right;
+        }
+        .left_circle,
+        .central_circle,
+        .right_circle {
+        background: rgb(69, 68, 73);
+        background: rgba(255, 255, 255, 0.15);
+        position: absolute;
+        border-radius: 50px;
+        }
+        .left_circle,
+        .right_circle {
+        width: 13px;
+        height: 13px;
+        top: 7px;
+        }
+        .left_circle {
+        left: 314px;
+        }
+        .central_circle {
+        width: 26px;
+        height: 26px;
+        top: 0px;
+        left: 322px;
+        }
+        .right_circle {
+        left: 343px;
+        }
+
+        /* Main tags */
+
+        body {
+        background: url(https://www.toptal.com/designers/subtlepatterns/patterns/dark_wall.png) repeat;
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        /* color: #e4e3e8 !important; */
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+        font-family: "Lato", Helvetica, sans-serif;
+        font-weight: 300;
+        color: #48da9b;
+        }
+        h1 {
+        font-size: 48px;
+        font-weight: 300;
+        margin: 20px 0;
+        }
+        h2 {
+        font-size: 28px;
+        margin: 32px 0 24px;
+        }
+        h3 {
+        font-size: 24px;
+        }
+        h4 {
+        font-size: 18px;
+        font-weight: 400;
+        }
+
+        blockquote {
+        font-style: italic;
+        margin: 25px 0;
+        padding-left: 20px;
+        border-left: 2px solid #48da9b;
+        }
+
+        blockquote,
+        p,
+        a,
+        li {
+        font-family: "Lato", Helvetica, sans-serif;
+        font-weight: 300;
+        font-size: 15px;
+        color: #e4e3e8;
+        }
+
+        a:focus {
+        outline: none;
+        }
+
+        ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+        li {
+        padding-left: 1em;
+        text-indent: -0.7em;
+        }
+        li:before {
+        content: "• ";
+        color: #837c9a;
+        font-size: 20px;
+        padding-right: 8px;
+        }
+
+        /* Containers size */
+
+        #main_container {
+        width: 960px;
+        margin: 0 auto;
+        }
+        #header {
+        height: 130px;
+        border-bottom: 1px solid #403f44;
+        }
+        .header_logotype_container {
+        width: 260px;
+        height: 130px;
+        border-right: 1px solid #403f44;
+        float: left;
+        }
+        .header_menu_container {
+        height: 130px;
+        width: 699px;
+        float: left;
+        }
+        .header_menu_container a {
+        font-family: "Lato", Helvetica, sans-serif;
+        }
+        #left_col {
+        width: 260px;
+        float: left;
+        }
+        #content_container {
+        width: 699px;
+        border-left: 1px solid #403f44;
+        float: left;
+        }
+        #footer {
+        width: 960px;
+        height: 60px;
+        border-top: 1px solid #403f44;
+        display: inline-block;
+        }
+
+        /* HEADER */
+
+        .logotype_name {
+        text-transform: uppercase;
+        font-size: 32px;
+        margin: 43px 0 0;
+        }
+        .logotype_occupation {
+        text-transform: uppercase;
+        margin-top: 5px;
+        color: #5ce2af;
+        font-size: 14px;
+        letter-spacing: 2px;
+        padding-left: 7px;
+        }
+
+        .download_print_buttons {
+        width: 225px;
+        height: 45px;
+        float: right;
+        }
+        .download_print_buttons li a {
+        text-decoration: none;
+        font-size: 12px;
+        font-family: "Lato", Helvetica, sans-serif;
+        font-style: italic;
+        line-height: 45px;
+        padding: 16px 17px;
+        background: #353638;
+        }
+        .download_print_buttons li a:hover {
+        background: #020609;
+        }
+        .download_print_buttons .icon {
+        color: #02070a;
+        padding-right: 6px;
+        font-style: normal;
+        font-size: 18px;
+        }
+        .icon-angle-double-right {
+        position: relative;
+        top: 2px;
+        }
+        .download_print_buttons a:hover .icon {
+        color: #e4e3e8;
+        }
+
+        .header_menu {
+        width: 699px;
+        margin-top: 40px;
+        margin-left: 5px;
+        }
+        .header_menu a {
+        text-decoration: none;
+        padding: 0 20px;
+        border-left: 1px solid #e4e3e8;
+        font-size: 16px;
+        font-weight: 400;
+        }
+        .header_menu a.no_border {
+        border-left: none;
+        }
+        .header_menu a:hover {
+        color: #837c9a;
+        }
+
+        /* LEFT NAV */
+
+        #left_nav h2 {
+        margin: 0;
+        font-size: 24px;
+        }
+
+        .profile_frame {
+        width: 170px;
+        height: 190px;
+        background: black;
+        border: 1px solid #403f44;
+        margin-top: 15px;
+        }
+        .profile_picture {
+        width: 150px;
+        height: 170px;
+        margin: 10px;
+        overflow: hidden;
+        border-radius: 8px;
+        /* border: 1px solid #5ce2af; */
+        border: 1px solid yellow;
+        /* background: black; */
+      }
+
+      .profile_picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+        .hello_content,
+        .contact_details_content {
+        margin-top: 25px;
+        }
+
+        .hello_content {
+        width: 230px;
+        }
+        .contact_details_content h2 + p.purple {
+        margin-top: 10px;
+        }
+        .contact_details_content p {
+        margin: 0;
+        }
+        .contact_details_content p.purple {
+        margin-top: 25px;
+        }
+
+        .send_message_button,
+        .special_button {
+        margin-top: 25px;
+        display: block;
+        background: #48da9b;
+        width: 230px;
+        height: 50px;
+        position: relative;
+        z-index: 1;
+        }
+        .cut1:after {
+        content: "";
+        position: absolute;
+        bottom: -19px;
+        left: -20px;
+        width: 30px;
+        height: 30px;
+        z-index: 9;
+        background: url(https://www.toptal.com/designers/subtlepatterns/patterns/dark_wall.png)
+            repeat;
+        transform: rotate(45deg);
+        }
+        .cut2:before {
+        content: "";
+        position: absolute;
+        top: -19px;
+        right: -20px;
+        width: 30px;
+        height: 30px;
+        z-index: 9;
+        background: url(https://www.toptal.com/designers/subtlepatterns/patterns/dark_wall.png)
+            repeat;
+        transform: rotate(45deg);
+        }
+        .content {
+        text-align: center;
+        color: #04080b;
+        width: 100%;
+        height: 40px;
+        position: absolute;
+        z-index: 2;
+        font: 18px "Lato", Arial, sans-serif;
+        margin: 0;
+        padding: 16px 0 0;
+        top: -4px;
+        bottom: 10px;
+        border-top: 1px solid #403f44;
+        border-bottom: 1px solid #403f44;
+        }
+        .send_message_button:hover,
+        .special_button:hover {
+        background: #29c782;
+        }
+
+        .get_social_content {
+        margin-top: 15px;
+        }
+        .get_social_content h2 {
+        margin-bottom: 8px;
+        }
+        .social_icons {
+        margin-left: -8px;
+        }
+        .social_icons a {
+        font-size: 23px;
+        text-decoration: none;
+        color: #e4e3e8 ; 
+        padding: 0;
+        padding: 0 5px;
+        }
+        .social_icons a span.invisible {
+        display: none;
+        }
+        .social_icons .github:hover {
+        background: #3b5998;
+        color: #dfe3ee;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        }
+        .social_icons .twitter:hover {
+        background: #00b0ed;
+        color: #fff;
+        border-top-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        }
+        .social_icons .instagram:hover {
+        background: #983b7c;
+        color: #dfe3ee;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        }
+        .social_icons .linkedin:hover {
+        background: #007bb6;
+        color: #fff;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        }
+
+        .footer_name {
+        font-style: italic;
+        margin-top: 20px;
+        }
+
+        /* Profile Content */
+
+        .profile_quote {
+        position: relative;
+        /* margin-left: 5px; */
+        }
+        .profile_quote p {
+        font-size: 17px;
+        width: 455px;
+        }
+        .profile_quote .entypo-quote {
+        color: #3d3a41;
+        font-size: 80px;
+        font-style: normal;
+        position: absolute;
+        top: -20px;
+        right: 70px;
+        cursor: default;
+        }
+
+        .philosophy_content {
+        margin-top: 20px;
+        }
+        .philosophy_content p {
+        margin: 0;
+        width: 370px;
+        float: left;
+        }
+        .philosophy_content ul {
+        float: left;
+        padding-left: 40px;
+        }
+        .philosophy_content .work_exp_section, .education_section{
+            width: 70%;
+        }
+        .work_item {
+        margin-bottom: 20px;
+        clear: both;
+        }
+
+        .work_item h4,
+        .work_item p {
+        float: none;
+        width: auto;
+        }
+
+        .education_section ul {
+        margin-top: 20px;
+        float: none;
+        padding-left: 20px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <!-- <%- include("shared/header", {loggedin : isAuth}) ; %> -->
+    <div class="container no-print mt-3">
+        <a href="http://localhost:10000/">
+            <button type="button" class="btn btn-success">Home page</button>
+        </a>
+        <a href="http://localhost:10000/summary?resumeID=<%= resume.resume_id %>">
+            <button type="button" class="btn btn-secondary">Previous page</button>
+        </a>
+    </div>
+    <div class="container no-print mt-4">
+        <ul class="download_print_buttons horizontal_list">
+            <li><a href="http://localhost:10000/generatePDF?resumeID=<%= resume.resume_id %>"><span class="icon entypo-print"></span>Print CV</a></li>
+        </ul>
+    </div>  
+
+    <% if( isAuth &&
+    resume && Object.keys(resume).length > 0 && personalInfo && Object.keys(personalInfo).length > 0 &&
+    education && education.length > 0 && workExp && workExp.length > 0 &&
+    skills && skills.length > 0 && summary && Object.keys(summary).length > 0) { %>
+        <div class="container py-4 px-2" id="resumediv">
+            <!-- MAIN CONTAINER -->
+            <div id="main_container">
+                <!-- HEADER -->
+                <div id="header">
+          <!-- LOGOTYPE/NAME -->
+          <div class="header_logotype_container">
+            <h2 class="logotype_name"><span class="purple"><%= personalInfo.name %></span></h2>
+            <h2 class="logotype_occupation"><%= resume.title %></h2>
+          </div>
+          <!-- MAIN MENU -->
+          <div class="header_menu_container">
+              <div class="clear"></div>
+            <ul class="header_menu horizontal_list">
+              <li><a class="no_border purple" href="#">Overview</a></li>
+              <!-- <li><a href="#">Education</a></li>
+              <li><a href="#">Skills</a></li>
+              <li><a href="#">Work Experience</a></li>
+              <li><a href="#">Featured Projects</a></li>
+              <li><a href="#">Awards</a></li> -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- LEFT COL -->
+        <div id="left_col">
+            <div class="profile_frame">
+            <div class="profile_picture">
+              <img src="/images/user.png" alt="profile picture" />
+            </div>
+          </div>
+          <div class="hello_content">
+            <h2>Hello!</h2>
+            <p>
+              I'm passionate about technology and human behavior, hardworker and
+              a fast-learner with experience in around 10 different countries
+              studying, working and volunteering.
+            </p>
+          </div>
+          <div class="contact_details_content">
+            <h2>Contact details</h2>
+            <p class="purple">Phone:</p>
+            <p>+91 <%= personalInfo.contact %></p>
+            <p class="purple">Email:</p>
+            <p><%= personalInfo.email %></p>
+            <p class="purple">Address:</p>
+            <p><%= personalInfo.address %></p>
+          </div>
+          <!-- <a href="mailto:jlalovi@gmail.com" class="send_message_button">
+            <span class="cut1"></span>
+            <span class="cut2"></span>
+            <span class="content">Send me a message <span class="fontawesome-double-angle-right"></span></span>
+          </a> -->
+          <div class="get_social_content">
+            <h2>Get social</h2>
+            <ul class="social_icons horizontal_list">
+              <li>
+                <a class="github" href="<%= personalInfo.github %>"
+                  ><span class="entypo-github-circled"></span
+                  ><span class="">Github</span>
+                </a>
+              </li>
+              <li>
+                <a class="twitter" href="https://twitter.com/jlalovi"
+                  ><span class="entypo-twitter-circled"></span
+                  ><span class="">Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a class="instagram" href="https://www.instagram.com"   
+                  ><span class="entypo-instagram-circled"></span
+                  ><span class="">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a class="linkedin" href="https://www.linkedin.com/in/jlalovi/en"
+                  ><span class="entypo-linkedin-circled"></span
+                  ><span class="">LinkedIn</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- PROFILE CONTENT -->
+        <div id="content_container">
+          <div class="block">
+            <h1>Profile</h1>
+            <blockquote class="profile_quote">
+              <p>
+                "There is no end to education. It is not that you read a book,
+                pass an examination, and finish with education. The whole of
+                life, from the moment you are born to the moment you die, is a
+                process of learning."
+              </p>
+              <p>Vladimir Putin</p>
+              <span class="entypo-quote"></span>
+            </blockquote>
+          </div>
+          <div class="block">
+            <h2>A few words about my Job</h2>
+            <p><%= summary.overall %></p>
+          </div>
+          <div class="horizontal_line">
+            <div class="line_left"></div>
+            <div class="left_circle"></div>
+            <div class="central_circle"></div>
+            <div class="right_circle"></div>
+            <div class="line_right"></div>
+          </div>
+          <div class="block">
+            <h2>Work Experience and Education</h2>
+            <p>
+              I belive in ethic and moral not in imposed rules that you "have
+              to" do or follow.
+            </p>
+            <div class="philosophy_content">
+              <!-- <% workExp.forEach(function(data){ %>
+              <h4><%= data.company_name %></h4>
+              <p><%= data.discription %></p>
+              <% }) %>
+              <ul>
+                <% education.forEach(function(data){ %>
+                <li><%= data.degree_name %></li>
+                <li><%= data.percentage %></li>
+                <% }) %>
+              </ul> -->
+              <div class="work_exp_section">
+              <% workExp.forEach(function(data){ %>
+                <div class="work_item">
+                  <h4><%= data.company_name %></h4>
+                  <p><%= data.discription %></p>
+                </div>
+                <% }) %>
+            </div>
+            <div class="education_section">
+              <ul>
+                <% education.forEach(function(data){ %>
+                  <li><%= data.degree_name %></li>
+                  <li><%= data.percentage %></li>
+                <% }) %>
+              </ul>
+            </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="horizontal_line">
+            <div class="line_left"></div>
+            <div class="left_circle"></div>
+            <div class="central_circle"></div>
+            <div class="right_circle"></div>
+            <div class="line_right"></div>
+          </div>
+          <div class="last block">
+            <h2>Skills</h2>
+            <p>
+                I'm passionate about technology and human behavior, both determine
+              almost all my interests and hobbies:
+            </p>
+            <ul>
+              <% skills.forEach(function(data){ %>
+              <li><%= data.skill_name1 %></li>
+              <li><%= data.skill_name2 %></li>
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+        </div>
+    </div>
+    <%} else{ %>
+        <h2 class="text-center text-danger ">Fill up all the Details first</h2>
+    <% } %>
+  </body>
+</html>

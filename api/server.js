@@ -17,6 +17,8 @@ const { educationRouter } = require("./Routes/education");
 const { workExpRouter } = require("./Routes/workExp");
 const { skillRouter } = require("./Routes/skills");
 const { summaryRouter } = require("./Routes/summary");
+const { previewRouter } = require("./Routes/preview");
+const { PDF_router } = require("./Routes/generatePdf");
 const { deleteRouter } = require("./Routes/deleteResume");
 const resetPassword = require("./Routes/resetPassword") ;
 
@@ -46,6 +48,8 @@ app.use("/educationDetails", educationRouter);
 app.use("/jobHistory", workExpRouter);
 app.use("/skills", skillRouter);
 app.use("/summary", summaryRouter) ;
+app.use('/preview', previewRouter) ;
+app.use('/generatePDF', PDF_router) ;
 app.use("/deleteResume", deleteRouter);
 
 app.listen(PORT, function () {
