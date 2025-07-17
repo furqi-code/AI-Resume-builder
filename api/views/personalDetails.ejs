@@ -11,6 +11,21 @@
     <!-- Header -->
     <%- include("shared/header", {loggedin : isAuth}); %>
 
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast hide" id="addToast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="/images/detail.png" class="rounded me-2" alt="..." width="40" height="40">
+                <strong class="me-auto">AI resume</strong>
+                <small class="text-body-secondary">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-black">
+                Personal details added in DB
+            </div>
+        </div>
+    </div>
+
     <!-- personal Details -->
     <% if(arr.length === 0) { %>
         <div class="container mt-5 d-flex justify-content-center" id="personalDiv">

@@ -39,13 +39,25 @@
     <!-- Header -->
     <%- include("shared/header", {loggedin : isAuth}); %>
 
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast hide" id="addToast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="/images/detail.png" class="rounded me-2" alt="..." width="40" height="40">
+                <strong class="me-auto">AI resume</strong>
+                <small class="text-body-secondary">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-black">
+                Resume Summary added in DB
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="summary mt-5">
             <div class="summary text-black p-4">
                 <p><%= summary %></p>
-                <!-- A Senior Machine Learning Engineer specializes in creating, deploying, and maintaining advanced machine learning models that drive innovation and efficiency within software applications.
-                They leverage their deep understanding of machine learning, natural language processing, and data science to develop algorithms that can learn from and make decisions based on data.
-                This role involves a blend of technical expertise, creativity, and problem-solving skills to tackle complex challenges in various domains, including search and recommendation systems. -->
             </div>
         </div>
 

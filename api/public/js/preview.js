@@ -11,10 +11,6 @@ We love font icons: http://weloveiconfonts.com/
 
 */
 
-// $(".download_print_buttons li a").on("click", function(){
-//     console.log("print CV clicked") ;
-//     $(".no-print").addClass("d-none") ;
-// })
 
 function logout() 
 {

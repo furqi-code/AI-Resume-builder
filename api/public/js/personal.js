@@ -40,7 +40,7 @@ $("#personalDetails").on("click", function(){
         return ;
     }
     
-    // extracted from URL to use in POST route (GET route me send ho rha tha automatically)
+    // extracted from URL to use in POST route (GET route me send ho rha tha automatically by <a>)
     let params = new URLSearchParams(window.location.search) ;
     let resumeID = params.get("resumeID") ;
     console.log("Resume_id: ", resumeID) ;
@@ -59,8 +59,11 @@ $("#personalDetails").on("click", function(){
         }
     })
     .then(function(res){
-        alert("personalDetails added in DB") ;
-        window.open(`/educationDetails?resumeID=${resumeID}`, "_parent") ;
+        const addToast = new bootstrap.Toast(document.getElementById('addToast'));
+        addToast.show() ;
+        setTimeout(function(){
+            window.open(`/educationDetails?resumeID=${resumeID}`, "_parent") ;
+        }, 2000)
     })
     .catch(function(err){
         console.log(err) ;

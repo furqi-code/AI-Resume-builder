@@ -50,7 +50,8 @@ $("#skillsDetails").on("click", function(){
         }
     })
     .then(function(res){
-        alert("Skills added in DB") ;
+        const addToast = new bootstrap.Toast(document.getElementById('addToast'));
+        addToast.show() ;
     })
     .catch(function(err){
         console.log(err) ;

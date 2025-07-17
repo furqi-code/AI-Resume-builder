@@ -4,7 +4,23 @@ let resumeID = params.get("resumeID") ;
 console.log("Resume_id: ", resumeID) ;
 
 function regenerate(){
-    location.reload() ;
+    // location.reload() 
+    $("p").text("") ;
+    axios({
+        method : "GET",
+        url : `http://localhost:10000/summary/regenerate?resumeID=${resumeID}`
+    })
+    .then(function(res){
+        $("p").text(res.data);
+        setTimeout(function(){
+            const addToast = new bootstrap.Toast(document.getElementById('addToast'));
+            addToast.show() ;
+        }, 1000);
+    })
+    .catch(function(err){
+        $("p").text(err);
+        alert("Error while generating summary") ;
+    })
 }
 
 function gotoPreviewPage(){
