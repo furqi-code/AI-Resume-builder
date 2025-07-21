@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { PORT } = require("./constants");
 const { Auth } = require("./middleware");
+require("dotenv").config() ;
+// console.log(process.env)  ;
 
 // Local modules
 const { homeRouter } = require("./Routes/home");
@@ -21,6 +23,7 @@ const { previewRouter } = require("./Routes/preview");
 const { PDF_router } = require("./Routes/generatePdf");
 const { deleteRouter } = require("./Routes/deleteResume");
 const resetPassword = require("./Routes/resetPassword") ;
+const {googlePassport} = require("./Routes/google-passport");
 
 // Middlewares
 app.set("view engine", "ejs");
@@ -51,6 +54,7 @@ app.use("/summary", summaryRouter) ;
 app.use('/preview', previewRouter) ;
 app.use('/generatePDF', PDF_router) ;
 app.use("/deleteResume", deleteRouter);
+app.use('/login/google', googlePassport) ;
 
 app.listen(PORT, function () {
   console.log(`Server started on Port ${PORT}`);

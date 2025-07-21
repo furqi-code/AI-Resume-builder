@@ -3,11 +3,11 @@ const Router = express.Router() ;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {SECRET} = require("../constants");
-const {signinSchema} = require|("../schema/signin") ;
-const {validator} = require("../middleware")
 const {executeQuery} = require("../mySqldb/Query") ;
+const {signinSchema} = require|("../schema/signin") ;
+const {validator} = require("../middleware") ;
 
-
+// locally handling user Login in our DB
 Router.post("/", async function(req,res){
     try{
         const {gmail, pass} = req.body ;

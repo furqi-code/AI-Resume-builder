@@ -67,12 +67,29 @@
                             <input type="password" class="form-control rounded-3" name="password" placeholder="Password" required />
                             <label>Password</label>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center  mb-3">
-                            <div>
-                                <input class="form-check-input" type="checkbox" value="remember-me" id="rememberMe" />
-                                <label class="form-check-label" for="rememberMe"> Remember me </label>
+                        <div class="card shadow-sm p-3 mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">Continue with</h5>
+                                <div class="d-grid gap-2">
+                                <a href="http://localhost:10000/login/google" class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2">
+                                    <img src="/images/google.png" alt="Google" height="24" width="24"> Google
+                                </a>
+                                <a href="#" class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2">
+                                    <img src="/images/github.png" alt="GitHub" height="24" width="24"> GitHub
+                                </a>
+                                <a href="#" class="btn btn-outline-info d-flex align-items-center justify-content-center gap-2">
+                                    <img src="/images/twitter.png" alt="Twitter" height="24" width="24"> Twitter
+                                </a>
+                                <a href="#" class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2">
+                                    <img src="/images/facebook.png" alt="Facebook" height="24" width="24"> Facebook
+                                </a>
+                                </div>
+                                <div class="text-end mt-3">
+                                    <button class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#forgotPassModal">
+                                        Forgot Password?
+                                    </button>
+                                </div>
                             </div>
-                            <input class="btn btn-link" type="button" value="Forgot Password?" data-bs-toggle="modal" data-bs-target="#forgotPassModal" placeholder="Forgot Password" />
                         </div>
                         <button type="submit" class="btn btn-primary w-100 rounded-pill py-2" style="font-size: 16px;">
                             Sign In

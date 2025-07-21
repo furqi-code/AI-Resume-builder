@@ -5,7 +5,8 @@ create table users(
 	user_id int primary key auto_increment,
     Username varchar(100),
     Password varchar(100),
-    Email varchar(100)
+    Email varchar(100),
+    Provider varchar(100) 
 );
 
 create table resumeTitle(
@@ -64,7 +65,7 @@ create table skills (
 );
 
 create table summary(
-	resume_id int,
+	resume_id int,			
 	overall TEXT(65534),
     created_by int,
     FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE CASCADE,
@@ -96,13 +97,6 @@ drop table skills ;
 
 select * from summary ;
 drop table summary ;
-
-CREATE TABLE test_time (
-  sample_time TIMESTAMP
-);
-INSERT INTO test_time (sample_time) VALUES ('2025-06-28 07:39:00');
-SELECT * FROM test_time ;
-drop table test_time ;
 
 
 drop database resumeAI ;
