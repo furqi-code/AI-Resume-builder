@@ -24,6 +24,7 @@ const { PDF_router } = require("./Routes/generatePdf");
 const { deleteRouter } = require("./Routes/deleteResume");
 const resetPassword = require("./Routes/resetPassword") ;
 const {googlePassport} = require("./Routes/google-passport");
+const {githubPassport} = require("./Routes/github-passport");
 
 // Middlewares
 app.set("view engine", "ejs");
@@ -55,6 +56,7 @@ app.use('/preview', previewRouter) ;
 app.use('/generatePDF', PDF_router) ;
 app.use("/deleteResume", deleteRouter);
 app.use('/login/google', googlePassport) ;
+app.use('/login/github', githubPassport) ;
 
 app.listen(PORT, function () {
   console.log(`Server started on Port ${PORT}`);
