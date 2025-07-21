@@ -72,7 +72,7 @@ function login(event)
 
     axios({
         method : "POST",
-        url : "http://localhost:10000/signin",
+        url : "http://localhost:10000/login",
         data : {
             gmail : email ,
             pass : password
