@@ -8,11 +8,12 @@ Router.get("/", async function(req,res){
     const isAuth = req.isAuth ;
     const current_user = req.user_id ;
     const resume_id = req.query.resumeID ;
-    let show_educationDetails = await executeQuery(`select * from education where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
-    if(show_educationDetails.length > 0)
+    if(isAuth){
+        let show_educationDetails = await executeQuery(`select * from education where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
         res.render("education", {isAuth, arr : show_educationDetails}) ;
-    else
-        res.render("education", {isAuth, arr : []}) ;
+    }else{
+        res.send({message : "kindly Login to edit your education Details"}) ;
+    }
 })
 
 Router.post("/", async function(req,res){

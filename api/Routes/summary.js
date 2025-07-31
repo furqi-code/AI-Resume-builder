@@ -10,6 +10,11 @@ Router.get("/", async function(req,res){
         const isAuth = req.isAuth ;
         const current_user = req.user_id ;
         const resume_id = req.query.resumeID ; 
+
+        if(!isAuth || !current_user){
+            return res.send({message : "kindly Login to the your Summary of your resume"}) ;
+        }
+
         let resumeTitle = await executeQuery(`select * from resumeTitle where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
         let personalDetails = await executeQuery(`select * from personal_details where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
         let education = await executeQuery(`select * from education where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
@@ -66,6 +71,11 @@ Router.get("/regenerate", async function(req,res){
     try{
         const current_user = req.user_id ;
         const resume_id = req.query.resumeID ; 
+
+        if(!isAuth || !current_user){
+            return res.send({message : "kindly Login to the your Summary of your resume"}) ;
+        }
+
         let resumeTitle = await executeQuery(`select * from resumeTitle where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
         let personalDetails = await executeQuery(`select * from personal_details where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
         let education = await executeQuery(`select * from education where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;

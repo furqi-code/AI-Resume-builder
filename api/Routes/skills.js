@@ -10,10 +10,11 @@ Router.get("/", async function(req,res){
     const resume_id = req.query.resumeID ;
     let show_skill = await executeQuery(`select * from skills where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
     console.log(show_skill) ;
-    if(show_skill.length > 0)
+    if(isAuth){
         res.render("skills", {isAuth, arr : show_skill}) ;    
-    else
-        res.render("skills", {isAuth, arr : []}) ;
+    }else{
+        res.send({message : "kindly Login to edit your Skills"}) ;
+    }
 })
 
 Router.post("/", async function(req,res){

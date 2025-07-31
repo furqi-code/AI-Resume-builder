@@ -8,11 +8,12 @@ Router.get("/", async function(req,res){
     const isAuth = req.isAuth ;
     const current_user = req.user_id ;
     const resume_id = req.query.resumeID ;
-    let show_workExp = await executeQuery(`select * from job_history where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
-    if(show_workExp.length > 0)
+    if(isAuth){
+        let show_workExp = await executeQuery(`select * from job_history where resume_id = ? AND created_by = ?`, [resume_id, current_user]) ;
         res.render("jobHistory", {isAuth, arr : show_workExp}) ;    
-    else
-        res.render("jobHistory", {isAuth, arr : []}) ;
+    }else{
+        res.send({message : "kindly Login to edit your Work Experience"}) ;
+    }
 })
 
 Router.post("/", async function(req,res){
