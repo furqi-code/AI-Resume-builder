@@ -55,6 +55,3 @@ The project focuses on:
 - Axios  
 
 ---
-
-## 📂 Project Structure
-
